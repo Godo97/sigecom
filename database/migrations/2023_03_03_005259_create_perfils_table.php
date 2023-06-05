@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('perfils', function (Blueprint $table) {
+            $table->engine="InnoDB";
             $table->id();
             $table->string('perfil', 100);
             $table->text('descripcion')->nullable();

@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('calificacions', function (Blueprint $table) {
+            $table->engine="InnoDB";
             $table->id();
             $table->string('calificacion_str', 50);
             $table->integer('calificacion_int');

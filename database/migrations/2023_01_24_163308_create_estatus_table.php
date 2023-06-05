@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('estatus', function (Blueprint $table) {
+            $table->engine="InnoDB";
             $table->id();
             $table->boolean('codigo');
             $table->string('estatu', 10);

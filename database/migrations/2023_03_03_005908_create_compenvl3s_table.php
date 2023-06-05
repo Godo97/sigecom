@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('compenvl3s', function (Blueprint $table) {
+            $table->engine="InnoDB";
             $table->id();
             $table->string('codigo', 10);
             $table->string('compenvl3', 100);
