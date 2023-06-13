@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Compenvl1 extends Model
 {
     use HasFactory;
+
+
+    protected $fillable = [
+    	'codigo', 
+    	'compenvl1', 
+    	'descripcion'
+    ];
 }

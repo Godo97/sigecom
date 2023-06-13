@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCompenvl2Request;
 use App\Http\Requests\UpdateCompenvl2Request;
+use App\Models\Compenvl1;
 use App\Models\Compenvl2;
 
 class Compenvl2Controller extends Controller
@@ -15,7 +16,9 @@ class Compenvl2Controller extends Controller
      */
     public function create()
     {
-        return view('compenvl2.create');
+        $compenvl2 = new Compenvl2();
+        $compenvl1s = Compenvl1::pluk('compenvl1','id');
+        return view('compenvl2.create', compact('compenvl2', 'compenvl1s'));
     }
 
     /**

@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCargoRequest;
-use App\Http\Requests\UpdateCargoRequest;
-use App\Models\Cargo;
+use Illuminate\Http\Request;
 
 class CargoController extends Controller
 {
@@ -31,10 +29,10 @@ class CargoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCargoRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCargoRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +40,10 @@ class CargoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cargo  $cargo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Cargo $cargo)
+    public function show($id)
     {
         //
     }
@@ -53,10 +51,10 @@ class CargoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cargo  $cargo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cargo $cargo)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +62,11 @@ class CargoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCargoRequest  $request
-     * @param  \App\Models\Cargo  $cargo
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCargoRequest $request, Cargo $cargo)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +74,10 @@ class CargoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cargo  $cargo
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cargo $cargo)
+    public function destroy($id)
     {
         //
     }

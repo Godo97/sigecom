@@ -2,76 +2,69 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCompenvl1Request;
-use App\Http\Requests\UpdateCompenvl1Request;
+use Illuminate\Http\Request;
 use App\Models\Compenvl1;
 
 class Compenvl1Controller extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        return view('compenvl1.create');
+        $compenvl1 = new Compenvl1();
+    
+        return view('compenvl1.create', compact('compenvl1'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCompenvl1Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreCompenvl1Request $request)
+
+    public function store(Request $request)
     {
-        //
+        //$compenvl1 = $request->user()->compenvl1s()->create([
+        //    'codigo' => $request->codigo,
+        //    'compenvl1' => $request->compenvl1,
+        //    'descripcion' => $request->descripcion,
+        //]);
+
+        //return redirect()->route('compenvl1.edit', $compenvl1);
+        
+        $request->validate([
+            'codigo' => 'required|unique:compenvl1s',
+            'compenvl1' => 'required|unique:compenvl1s',
+            'descripcion' => 'required'
+        ]);
+
+        $compenvl1 = new Compenvl1;
+
+        $compenvl1->codigo = $request->codigo;
+        $compenvl1->compenvl1 = $request->compenvl1;
+        $compenvl1->descripcion = $request->descripcion;
+
+        $compenvl1->save();
+
+        return redirect()->route('competencia')->with('success', 'Student Added successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Compenvl1  $compenvl1
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(Compenvl1 $compenvl1)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Compenvl1  $compenvl1
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Compenvl1 $compenvl1)
     {
-        //
+        return view('compenvl1.edit', compact('compenvl1'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCompenvl1Request  $request
-     * @param  \App\Models\Compenvl1  $compenvl1
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateCompenvl1Request $request, Compenvl1 $compenvl1)
+
+    public function update(Request $request, Compenvl1 $compenvl1)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Compenvl1  $compenvl1
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy(Compenvl1 $compenvl1)
     {
-        $compenvl1->delete();
-        return back();
+        var_dump($compenvl1);
+        //$compenvl1->delete();
+        return redirect(to: '/competencia')->with('destroy', 'Dato eliminado');
     }
 }
