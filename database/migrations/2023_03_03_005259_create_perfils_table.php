@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('perfils', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->string('perfil', 100);
+            $table->string('perfil', 100)->unique();
             $table->text('descripcion')->nullable();
             $table->timestamps();
         });

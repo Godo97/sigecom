@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('gerencials', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->string('codigo', 10);
+            $table->string('codigo', 10)->unique();
             $table->string('gerencial', 50);
             $table->foreignId('gerenciag_id')
                   ->constrained('gerenciags')

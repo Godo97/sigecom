@@ -17,7 +17,7 @@ return new class extends Migration
             $table->engine="InnoDB";
             $table->id();
             $table->string('calificacion_str', 50);
-            $table->integer('calificacion_int');
+            $table->integer('calificacion_int')->unique();
             $table->timestamps();
         });
     }

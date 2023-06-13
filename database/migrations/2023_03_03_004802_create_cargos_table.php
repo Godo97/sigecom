@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('cargos', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->string('codigo', 10);
-            $table->string('cargo', 100);
+            $table->string('codigo', 10)->unique();
+            $table->string('cargo', 100)->unique();
             $table->timestamps();
         });
     }

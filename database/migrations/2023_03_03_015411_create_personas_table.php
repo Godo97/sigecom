@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('personas', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->string('ci', 8);
+            $table->string('ci', 8)->unique();
             $table->string('usuario', 10)->unique();
             $table->string('nombre', 100);
             $table->string('snombre', 100)->nullable();

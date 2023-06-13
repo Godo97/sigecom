@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('gerenciags', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->string('codigo', 10);
-            $table->string('gerenciag', 50);
+            $table->string('codigo', 10)->unique();
+            $table->string('gerenciag', 50)->unique();
             $table->timestamps();
         });
     }

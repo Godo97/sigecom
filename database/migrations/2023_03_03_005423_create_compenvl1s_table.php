@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('compenvl1s', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->string('codigo', 10);
-            $table->string('compenvl1', 100);
+            $table->string('codigo', 10)->unique();
+            $table->string('compenvl1', 100)->unique();
             $table->text('descripcion')->nullable();
             $table->timestamps();
         });

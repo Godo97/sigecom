@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('compenvl3s', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->id();
-            $table->string('codigo', 10);
-            $table->string('compenvl3', 100);
+            $table->string('codigo', 10)->unique();
+            $table->string('compenvl3', 100)->unique();
             $table->text('descripcion')->nullable();
             $table->foreignId('compenvl2_id')
                   ->constrained('compenvl2s')
