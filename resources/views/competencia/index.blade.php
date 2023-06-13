@@ -15,6 +15,20 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">
+				@if ($message = Session::get('success'))
+				<div class="alert alert-danger d-flex align-items-center" role="alert">
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					<strong>{{ $message }}</strong>
+  					
+				</div>
+				@endif
+				@if ($message = Session::get('destroy'))
+				<div class="alert alert-danger d-flex align-items-center" role="alert">
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					<strong>{{ $message }}</strong>
+  					
+				</div>
+				@endif
 				<div class="card card-primary card-outline">
 					<div id="nestable-menu" class="card-header">
 					<!--
@@ -57,19 +71,18 @@
 											<i class="expandable-table-caret fas fa-caret-right fa-fw"></i>
 										</button>
 										{{ $compenvl1->compenvl1 }}
-										<span class="float-right dd-nodrag">
-											<a href="{{ route('compenvl3.create') }}" class="btn btn-xs btn-primary">
+										<span class="float-right dd-nodrag d-inline">
+											<a href="{{ route('compenvl1.edit', $compenvl1) }}" class="btn btn-xs btn-primary " >
 												<i class="fa fa-pencil-alt"></i>
 											</a>
 											<form action="{{ route('compenvl1.destroy', $compenvl1) }}" method="POST">
 												@csrf
 												@method('DELETE')
-												<input type="submit" class="btn btn-xs btn-danger">
+												<button type="submit" class="btn btn-xs btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-whatever="@mdo">
+													<i class="fa fa-trash"></i>
+												</button>
 												
 											</form>
-											<a href="" class="btn btn-xs btn-danger">
-												<i class="fa fa-trash"></i>
-											</a>
 										</span>
 									</td>
 								</tr>
@@ -160,6 +173,33 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  		<div class="modal-dialog">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        			<h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+        			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      			</div>
+      			<div class="modal-body">
+        			<form>
+         				<div class="mb-3">
+            				<label for="recipient-name" class="col-form-label">Recipient:</label>
+            				<input type="text" class="form-control" id="recipient-name">
+          				</div>
+          				<div class="mb-3">
+            				<label for="message-text" class="col-form-label">Message:</label>
+            				<textarea class="form-control" id="message-text"></textarea>
+          				</div>
+        			</form>
+      			</div>
+      			<div class="modal-footer">
+        			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        			<button type="button" class="btn btn-primary">Send message</button>
+      			</div>
+    		</div>
+  		</div>
+	</div>
 @stop
 
 @section('css')
@@ -167,5 +207,24 @@
 @stop
 
 @section('js')
-	
+	<script>
+		const deleteModal = document.getElementById('deleteModal')
+		if (deleteModal) {
+			deleteModal.addEventListener('show.bs.modal', event => {
+    			// Button that triggered the modal
+    			const button = event.relatedTarget
+    			// Extract info from data-bs-* attributes
+    			const recipient = button.getAttribute('data-bs-whatever')
+    			// If necessary, you could initiate an Ajax request here
+    			// and then do the updating in a callback.
+
+    			// Update the modal's content.
+    			const modalTitle = deleteModal.querySelector('.modal-title')
+    			const modalBodyInput = deleteModal.querySelector('.modal-body input')
+
+    			modalTitle.textContent = `New message to ${recipient}`
+    			modalBodyInput.value = recipient
+			})
+		}
+	</script>
 @stop

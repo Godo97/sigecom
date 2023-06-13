@@ -21,7 +21,8 @@
 
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('compenvl2.store') }}" role="form">
+                        <form method="POST" action="{{ route('compenvl2.update', $compenvl2->id) }}" role="form">
+                            {{ method_field('PATCH') }}
                             @csrf
 
                             @include('compenvl2.form')
