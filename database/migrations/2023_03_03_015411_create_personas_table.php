@@ -23,22 +23,6 @@ return new class extends Migration
             $table->string('apellido', 100);
             $table->string('sapellido', 100)->nullable();
             $table->string('foto', 100)->nullable();
-            $table->foreignId('gerenciag_id')
-                  ->constrained('gerenciags')
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
-            $table->foreignId('gerencial_id')
-                  ->constrained('gerencials')
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
-            $table->foreignId('coordinacion_id')
-                  ->constrained('coordinacions')
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
-            $table->foreignId('cargo_id')
-                  ->constrained('cargos')
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
             $table->foreignId('genero_id')
                   ->constrained('generos')
                   ->onUpdate('cascade')
