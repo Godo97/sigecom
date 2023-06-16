@@ -109,3 +109,8 @@
         </div>
     </div>
 </div>
+<div class="form-group row">
+    <div class="btn-group float-right">
+        <input type="submit" value="Enviar" class="btn btn-sm btn-block btn-primary">
+    </div>
+</div>

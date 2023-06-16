@@ -33,7 +33,7 @@ class PersonaController extends Controller
     public function create()
     {   
         $persona = new Persona();
-        $estatus = Estatu::pluck('estatus', 'codigo', 'id');
+        $estatus = Estatu::pluck('estatu', 'codigo', 'id');
         $generos = Genero::pluck('genero', 'id');
         return view('persona.create', compact('persona', 'estatus', 'generos'));
     }
