@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Genero extends Model
+class Estatu extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'genero'
+        'estatu'
     ];
 
     public function personas() {
-        return $this->hasMany('App\Models\Persona', 'genero_id', 'id');
+        return $this->hasMany('App\Models\Persona', 'estatus_id', 'id');
     }
 }
