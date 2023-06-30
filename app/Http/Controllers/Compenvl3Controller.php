@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCompenvl3Request;
-use App\Http\Requests\UpdateCompenvl3Request;
 use App\Models\Compenvl3;
 
 class Compenvl3Controller extends Controller
@@ -14,7 +12,8 @@ class Compenvl3Controller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+
         return view('compenvl2.create');
     }
 
@@ -24,7 +23,7 @@ class Compenvl3Controller extends Controller
      * @param  \App\Http\Requests\StoreCompenvl3Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCompenvl3Request $request)
+    public function store( $request)
     {
         //
     }
@@ -58,7 +57,7 @@ class Compenvl3Controller extends Controller
      * @param  \App\Models\Compenvl3  $compenvl3
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCompenvl3Request $request, Compenvl3 $compenvl3)
+    public function update( $request, Compenvl3 $compenvl3)
     {
         //
     }

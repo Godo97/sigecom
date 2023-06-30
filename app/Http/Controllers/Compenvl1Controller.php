@@ -27,9 +27,8 @@ class Compenvl1Controller extends Controller
         //return redirect()->route('compenvl1.edit', $compenvl1);
         
         $request->validate([
-            'codigo' => 'required|unique:compenvl1s',
-            'compenvl1' => 'required|unique:compenvl1s',
-            'descripcion' => 'required'
+            'codigo' => 'required | unique:compenvl1s',
+            'compenvl1' => 'required | unique:compenvl1s',
         ]);
 
         $compenvl1 = new Compenvl1;

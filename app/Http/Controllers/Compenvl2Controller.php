@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCompenvl2Request;
-use App\Http\Requests\UpdateCompenvl2Request;
 use App\Models\Compenvl1;
 use App\Models\Compenvl2;
 
@@ -17,17 +15,17 @@ class Compenvl2Controller extends Controller
     public function create()
     {
         $compenvl2 = new Compenvl2();
-        $compenvl1s = Compenvl1::pluk('compenvl1','id');
+        $compenvl1s = Compenvl1::get();
         return view('compenvl2.create', compact('compenvl2', 'compenvl1s'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCompenvl2Request  $request
+     * @param  \App\Http\Requests\  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCompenvl2Request $request)
+    public function store( $request)
     {
         //
     }
@@ -57,11 +55,11 @@ class Compenvl2Controller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCompenvl2Request  $request
+     * @param  \App\Http\Requests\  $request
      * @param  \App\Models\Compenvl2  $compenvl2
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCompenvl2Request $request, Compenvl2 $compenvl2)
+    public function update( $request, Compenvl2 $compenvl2)
     {
         //
     }
