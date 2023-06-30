@@ -18,11 +18,11 @@ class EstatuSeeder extends Seeder
         $data = [
             [
                 'codigo' => '0',
-                'estatu' => 'false'
+                'estatu' => 'Inactivo'
             ],
             [
                 'codigo' => '1',
-                'estatu' => 'true'
+                'estatu' => 'Activo'
             ]
         ];
         DB::table('estatus')->insert($data);
