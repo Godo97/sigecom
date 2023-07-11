@@ -94,7 +94,7 @@
 													<tr>
 														<td class="d-flex flex-row-reverse">
 															<div class="btn-group">
-																<a href="{{ route('compenvl2.create') }}" class="btn btn-sm btn-block btn-default">
+																<a href="{{ route('compenvl2.create', $compenvl1) }}" class="btn btn-sm btn-block btn-default">
 																	<i class="text-primary fa fa-plus"></i>
 																	Agregar
 																</a>

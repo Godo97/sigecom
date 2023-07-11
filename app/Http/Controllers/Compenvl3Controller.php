@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Compenvl3;
+use App\Models\Compenvl2;
+use App\Models\Compenvl1;
 
 class Compenvl3Controller extends Controller
 {
@@ -13,61 +16,27 @@ class Compenvl3Controller extends Controller
      */
     public function create()
     {   
-
-        return view('compenvl2.create');
+        $compenvl3 = new Compenvl3();
+        $compenvl2s = Compenvl2::get();
+        $compenvl1s = Compenvl1::get();
+        return view('compenvl3.create', compact('compenvl3', 'compenvl2s', 'compenvl1s'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCompenvl3Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store( $request)
+    public function store(Request $request)
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Compenvl3  $compenvl3
-     * @return \Illuminate\Http\Response
-     */
     public function show(Compenvl3 $compenvl3)
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Compenvl3  $compenvl3
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Compenvl3 $compenvl3)
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCompenvl3Request  $request
-     * @param  \App\Models\Compenvl3  $compenvl3
-     * @return \Illuminate\Http\Response
-     */
-    public function update( $request, Compenvl3 $compenvl3)
+    public function update(Request $request, Compenvl3 $compenvl3)
     {
         //
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Compenvl3  $compenvl3
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Compenvl3 $compenvl3)
     {
         $compenvl3->delete();

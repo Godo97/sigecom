@@ -18,7 +18,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="compenvl1" class="col-sm-2 col-form-label">Competencia</label>
+    <label for="compenvl1" class="col-sm-2 col-form-label">Competencia Nvl 1</label>
     <div class="col-sm-8">
         <div class="input-group">
             <div class="input-group-prepend">
@@ -39,8 +39,7 @@
     <label for="descripcion" class="col-sm-2 form-label">Descripción</label>
     <div class="col-sm-8">
         <div class="input-group">
-            
-            <textarea class="form-control" id="descripcion" name="descripcion" value="{{ old('descripcion') }}"></textarea>
+            <textarea class="form-control" id="descripcion" name="descripcion">{{ $compenvl1->descripcion }}</textarea>
         </div>
     </div>
 </div>

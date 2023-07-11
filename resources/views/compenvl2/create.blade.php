@@ -29,6 +29,9 @@
                     <form method="POST" action="{{ route('compenvl2.store') }}" role="form">
                         @include('compenvl2._form')
                     </form>
+                    <?php 
+                        //print_r($compenvl1s);
+                    ?>
                 </div>
             </div>
         </div>
