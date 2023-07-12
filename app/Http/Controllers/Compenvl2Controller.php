@@ -16,7 +16,8 @@ class Compenvl2Controller extends Controller
     public function create()
     {
         $compenvl2 = new Compenvl2();
-        $compenvl1s = Compenvl1::get();
+        //$compenvl1s = Compenvl1::get();
+        $compenvl1s = Compenvl1::pluck('id', 'compenvl1');
         //$compenvl1 = $data;
         return view('compenvl2.create', compact('compenvl2', 'compenvl1s'));
     }
@@ -35,7 +36,7 @@ class Compenvl2Controller extends Controller
 
     public function edit(Compenvl2 $compenvl2)
     {   
-        $compenvl1s = Compenvl1::get();
+        $compenvl1s = Compenvl1::pluck('id', 'compenvl1');
         return view('compenvl2.edit', compact('compenvl2', 'compenvl1s'));
     }
 

@@ -3,7 +3,7 @@
     <label for="compenvl1" class="col-sm-2 col-form-label">Competencia Nvl 1</label>
     <div class="col-sm-8">
         <select class="form-control select" name="compenvl1" style="width: 100%;" placeholder="-- Seleccione --">
-            
+            <option value="" selected>Seleccione:</option>
             @foreach($compenvl1s as $compenvl1)
             <option value="{{ $compenvl1->id }}" {{ (isset($compenvl1->id) || old('id'))}}> {{ $compenvl1->compenvl1 }}</option>
             @endforeach

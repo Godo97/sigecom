@@ -55,7 +55,7 @@ class PersonaController extends Controller
             'usuario' => 'required | size:10 | unique:personas',
             'pnombre' => 'required',
             'papellido'  => 'required',
-            'foto' => 'required | image | mimes:jpg,png,jpeg,gif,svg | max:2048 | unique:personas',
+            'foto' => 'required | image | mimes:jpg,png,jpeg | max:2048 | unique:personas',
             'genero' => 'required',
             'estatu' => 'required'
         ]);

@@ -15,4 +15,9 @@ class Compenvl1 extends Model
     	'compenvl1', 
     	'descripcion'
     ];
+
+    public function compenvl2()
+    {
+        return $this->hasMany('App\Models\Compenvl2', 'compenvl1_id', 'id');
+    }
 }
