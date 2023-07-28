@@ -39,7 +39,8 @@ class Compenvl3Controller extends Controller
     }
     public function destroy(Compenvl3 $compenvl3)
     {
-        $compenvl3->delete();
-        return back();
+        var_dump($compenvl3);
+        //$compenvl3->delete();
+        return redirect(to: '/competencia')->with('destroy', 'Dato eliminado');
     }
 }

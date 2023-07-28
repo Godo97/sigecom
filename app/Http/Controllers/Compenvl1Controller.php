@@ -65,5 +65,6 @@ class Compenvl1Controller extends Controller
         var_dump($compenvl1);
         //$compenvl1->delete();
         return redirect(to: '/competencia')->with('destroy', 'Dato eliminado');
+        //return redirect(to: '/competencia')->alert()->error('Sweet Alert with error.');
     }
 }
