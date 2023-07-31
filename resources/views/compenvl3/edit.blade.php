@@ -26,7 +26,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('compenvl2.store') }}" role="form">
+                    <form method="POST" action="{{ route('compenvl3.update', $compenvl3->id) }}" role="form">
+                        @method('PUT')
                         @include('compenvl3._form')
                     </form>
                 </div>

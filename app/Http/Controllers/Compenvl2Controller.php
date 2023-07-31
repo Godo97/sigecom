@@ -28,12 +28,6 @@ class Compenvl2Controller extends Controller
         //
     }
 
-   
-    public function show(Compenvl2 $compenvl2)
-    {
-        //
-    }
-
     public function edit(Compenvl2 $compenvl2)
     {   
         $compenvl1s = Compenvl1::pluck('id', 'compenvl1');

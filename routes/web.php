@@ -36,11 +36,10 @@ Route::resource('persona', Controllers\PersonaController::class);
 
 Route::get('/competencia', [Controllers\CompetenciaController::class, 'index'])->name('competencia');
 
-Route::resource('competencia/compenvl1', Controllers\Compenvl1Controller::class)->except('index');
-Route::resource('competencia/compenvl2', Controllers\Compenvl2Controller::class)->except('index');
-Route::resource('competencia/compenvl3', Controllers\Compenvl3Controller::class)->except('index');
+Route::resource('competencia/compenvl1', Controllers\Compenvl1Controller::class)->except(['index', 'show']);
+Route::resource('competencia/compenvl2', Controllers\Compenvl2Controller::class)->except(['index', 'show']);
+Route::resource('competencia/compenvl3', Controllers\Compenvl3Controller::class)->except(['index', 'show']);
 //Route::resource('compe/asignar', Controllers\PersonaController::class);
 
 //Route::resource('competencia', Controllers\PersonaController::class);
-
 

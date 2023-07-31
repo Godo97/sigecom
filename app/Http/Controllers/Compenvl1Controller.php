@@ -7,7 +7,11 @@ use App\Models\Compenvl1;
 
 class Compenvl1Controller extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function create()
     {
         $compenvl1 = new Compenvl1();
@@ -27,8 +31,8 @@ class Compenvl1Controller extends Controller
         //return redirect()->route('compenvl1.edit', $compenvl1);
         
         $request->validate([
-            'codigo' => 'required | unique:compenvl1s',
-            'compenvl1' => 'required | unique:compenvl1s',
+            'codigo' => 'required | unique:compenvl1s,codigo',
+            'compenvl1' => 'required | unique:compenvl1s,compenvl1',
         ]);
 
         $compenvl1 = new Compenvl1;
@@ -40,12 +44,6 @@ class Compenvl1Controller extends Controller
         $compenvl1->save();
 
         return redirect()->route('competencia')->with('success', 'Student Added successfully.');
-    }
-
-   
-    public function show(Compenvl1 $compenvl1)
-    {
-        //
     }
 
     public function edit(Compenvl1 $compenvl1)
