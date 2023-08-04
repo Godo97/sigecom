@@ -18,6 +18,6 @@ class Compenvl3 extends Model
 
     public function compenvl2() 
     {
-        return $this->hasOne('App\Models\Compenvl2', 'id', 'compenvl2_id');
+        return $this->belongsTo(Compenvl2::class);
     }
 }

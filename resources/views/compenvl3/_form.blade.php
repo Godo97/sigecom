@@ -2,10 +2,9 @@
 <div class="form-group row">
     <label for="compenvl1" class="col-sm-2 col-form-label">Competencia Nvl 1</label>
     <div class="col-sm-8">
-        <select class="form-control select" name="compenvl1" style="width: 100%;" placeholder="-- Seleccione --">
-            <option value="" selected>Seleccione:</option>
+        <select class="form-control select" name="compenvl1" style="width: 100%;">
             @foreach($compenvl1s as $compenvl1)
-            <option value="{{ $compenvl1->id }}" {{ (isset($compenvl1->id) || old('id'))}}> {{ $compenvl1->compenvl1 }}</option>
+            <option value="{{ $compenvl1->compenvl1_id }}" {{ (isset($compenvl1->compenvl1_id) || old('id'))}}> {{ $compenvl1->compenvl1 }}</option>
             @endforeach
         </select>
     </div>
@@ -13,8 +12,7 @@
 <div class="form-group row">
     <label for="compenvl2" class="col-sm-2 col-form-label">Competencia Nvl 2</label>
     <div class="col-sm-8">
-        <select class="form-control select" name="compenvl2" style="width: 100%;" placeholder="-- Seleccione --">
-            <option value="" selected>Seleccione:</option>
+        <select class="form-control select" name="compenvl2" style="width: 100%;">
             @foreach($compenvl2s as $compenvl2)
             <option value="{{ $compenvl2->id }}" {{ (isset($compenvl2->id) || old('id'))}}> {{ $compenvl2->compenvl2 }}</option>
             @endforeach

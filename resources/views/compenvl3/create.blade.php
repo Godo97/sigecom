@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('compenvl2.store') }}" role="form">
+                    <form method="POST" action="{{ route('compenvl3.store') }}" role="form">
                         @include('compenvl3._form')
                     </form>
                 </div>

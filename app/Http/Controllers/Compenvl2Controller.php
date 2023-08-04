@@ -8,16 +8,18 @@ use App\Models\Compenvl2;
 
 class Compenvl2Controller extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function create($compenvl1)
     {
         $compenvl2 = new Compenvl2();
+
         //$compenvl1s = Compenvl1::get();
-        $compenvl1s = Compenvl1::pluck('id', 'compenvl1');
+        $compenvl1s = Compenvl1::where('id', $compenvl1)->get();
+        //$compenvl1s = Compenvl1::pluck('id', 'compenvl1');
         //$compenvl1 = $data;
         return view('compenvl2.create', compact('compenvl2', 'compenvl1s'));
     }
@@ -25,12 +27,28 @@ class Compenvl2Controller extends Controller
 
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'codigo' => 'required | unique:compenvl2s,codigo',
+            'compenvl1' => 'required',
+            'compenvl2' => 'required | unique:compenvl2s,compenvl2',
+        ]);
+
+        $compenvl2 = new Compenvl2;
+
+        $compenvl2->codigo = $request->codigo;
+        $compenvl2->compenvl1_id = $request->compenvl1;
+        $compenvl2->compenvl2 = $request->compenvl2;
+        $compenvl2->descripcion = $request->descripcion;
+
+        $compenvl2->save();
+
+        return redirect()->route('competencia')->with('success', 'Añadida competencia de nivel 2.');
     }
 
     public function edit(Compenvl2 $compenvl2)
     {   
-        $compenvl1s = Compenvl1::pluck('id', 'compenvl1');
+        //$compenvl1s = Compenvl1::pluck('id', 'compenvl1');
+        $compenvl1s = Compenvl1::where('id', $compenvl2->compenvl1_id)->get();
         return view('compenvl2.edit', compact('compenvl2', 'compenvl1s'));
     }
 

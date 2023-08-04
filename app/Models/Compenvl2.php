@@ -18,12 +18,13 @@ class Compenvl2 extends Model
 
     public function compenvl1() 
     {
-        return $this->hasOne('App\Models\Compenvl1', 'id', 'compenvl1_id');
+        return $this->belongsTo(Compenvl1::class);
     }
 
     public function compenvl3()
     {
-        return $this->hasMany('App\Models\Compenvl3', 'compenvl2_id', 'id');
+        return $this->hasMany(Compenvl3::class, 'compenvl2_id', 'id');
+        //return $this->belongsTo(Compenvl2::class);
     }
 
 }

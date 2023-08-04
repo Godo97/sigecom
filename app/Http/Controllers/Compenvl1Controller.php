@@ -31,8 +31,14 @@ class Compenvl1Controller extends Controller
         //return redirect()->route('compenvl1.edit', $compenvl1);
         
         $request->validate([
-            'codigo' => 'required | unique:compenvl1s,codigo',
+            'codigo' => 'required | numeric | unique:compenvl1s,codigo',
             'compenvl1' => 'required | unique:compenvl1s,compenvl1',
+        ],
+        [
+            'required' => 'Este campo no puede quedar vacío.',
+            'codigo.numeric' => 'Este campo debe ser numerico.',
+            'unique' => 'Este campo debe ser único.'
+            
         ]);
 
         $compenvl1 = new Compenvl1;
@@ -43,7 +49,7 @@ class Compenvl1Controller extends Controller
 
         $compenvl1->save();
 
-        return redirect()->route('competencia')->with('success', 'Student Added successfully.');
+        return redirect()->route('competencia')->with('success', 'Añadida competencia de nivel 1.');
     }
 
     public function edit(Compenvl1 $compenvl1)
