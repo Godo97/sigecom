@@ -28,9 +28,15 @@ class Compenvl2Controller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'codigo' => 'required | unique:compenvl2s,codigo',
+            'codigo' => 'required | numeric | unique:compenvl2s,codigo',
             'compenvl1' => 'required',
             'compenvl2' => 'required | unique:compenvl2s,compenvl2',
+        ],
+        [
+            'required' => 'Este campo no puede quedar vacío.',
+            'numeric' => 'Este campo debe ser numerico.',
+            'unique' => 'Este campo debe ser único.'
+            
         ]);
 
         $compenvl2 = new Compenvl2;
@@ -54,7 +60,17 @@ class Compenvl2Controller extends Controller
 
     public function update(Request $request, Compenvl2 $compenvl2)
     {
-        //
+        $request->validate([
+            'codigo' => 'required | numeric | unique:compenvl2s,codigo.' . $compenvl2->id,
+            'compenvl1' => 'required',
+            'compenvl2' => 'required | unique:compenvl2s,compenvl2,' . $compenvl2->id,
+        ],
+        [
+            'required' => 'Este campo no puede quedar vacío.',
+            'numeric' => 'Este campo debe ser numerico.',
+            'unique' => 'Este campo debe ser único.'
+            
+        ]);
     }
 
     public function destroy(Compenvl2 $compenvl2)

@@ -36,7 +36,7 @@ class Compenvl1Controller extends Controller
         ],
         [
             'required' => 'Este campo no puede quedar vacío.',
-            'codigo.numeric' => 'Este campo debe ser numerico.',
+            'numeric' => 'Este campo debe ser numerico.',
             'unique' => 'Este campo debe ser único.'
             
         ]);
@@ -60,7 +60,19 @@ class Compenvl1Controller extends Controller
 
     public function update(Request $request, Compenvl1 $compenvl1)
     {
-        //
+        $request->validate([
+            'codigo' => 'required | unique:compenvl1s,codigo,'. $compenvl1->id . ' | numeric',
+            'compenvl1' => 'required | unique:compenvl1s,compenvl1,'. $compenvl1->id,
+        ],
+        [
+            'required' => 'Este campo no puede quedar vacío.',
+            'numeric' => 'Este campo debe ser numerico.',
+            'unique' => 'Este campo debe ser único.'
+            
+        ]);
+        $compenvl1->update([
+            
+        ]);
     }
 
    
