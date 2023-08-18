@@ -71,8 +71,12 @@ class Compenvl1Controller extends Controller
             
         ]);
         $compenvl1->update([
-            
+            'codigo' => $request->codigo,
+            'compenvl1' => $request->compenvl1,
+            'descripcion' => $request->descripcion,
         ]);
+
+        return redirect()->route('competencia')->with('success', 'Actualizada competencia de nivel 1.');
     }
 
    

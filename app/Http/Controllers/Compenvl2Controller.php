@@ -71,6 +71,15 @@ class Compenvl2Controller extends Controller
             'unique' => 'Este campo debe ser único.'
             
         ]);
+
+        $compenvl2->update([
+            'codigo' => $request->codigo,
+            'compenvl1_id' => $request->compenvl1,
+            'compenvl2' => $request->compenvl2,
+            'descripcion' => $request->descripcion,
+        ]);
+
+        return redirect()->route('competencia')->with('success', 'Actualizada competencia de nivel 2.');
     }
 
     public function destroy(Compenvl2 $compenvl2)

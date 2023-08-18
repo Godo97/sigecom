@@ -40,8 +40,9 @@ Route::resource('competencia/compenvl1', Controllers\Compenvl1Controller::class)
 Route::resource('competencia/compenvl2', Controllers\Compenvl2Controller::class)->except(['index', 'show', 'create']);
 Route::resource('competencia/compenvl3', Controllers\Compenvl3Controller::class)->except(['index', 'show', 'create']);
 //Route::resource('compe/asignar', Controllers\PersonaController::class);
-
 //Route::resource('competencia', Controllers\PersonaController::class);
 route::get('competencia/compenvl2/{id}/create', [Controllers\Compenvl2Controller::class, 'create'])->name('compenvl2.create');
 route::get('competencia/compenvl3/{id}/create', [Controllers\Compenvl3Controller::class, 'create'])->name('compenvl3.create');
+
+Route::resource('compe/asignar', Controllers\AsignarCompeController::class);
 
