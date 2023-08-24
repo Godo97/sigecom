@@ -46,3 +46,5 @@ route::get('competencia/compenvl3/{id}/create', [Controllers\Compenvl3Controller
 
 Route::resource('compe/asignar', Controllers\AsignarCompeController::class);
 
+
+Route::get('pruebas', [Controllers\PruebasController::class, 'index'])->name('pruebas');

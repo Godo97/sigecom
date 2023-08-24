@@ -21,12 +21,21 @@ class AsignarCompeController extends Controller
     public function create()
     {
         $tree = TreeController::tree();
-        return view('asignar.create', $tree);
+        return view('asignar.create', compact('tree'));
     }
 
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')){
+            $nombre = $request->input("persona");
+            //var_dump($nombre);
+        }
+        
+        
+        $datos = $request->json()->all();
+        if ($request->ajax()) {
+            echo $datos;
+        }
     }
 
     public function show($id)

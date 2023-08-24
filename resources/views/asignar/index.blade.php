@@ -5,8 +5,7 @@
 @section('content_header')
 <br>
 <h1 class="m-0 text-dark">
-    Gestión de competencia
-    <small class="font-weight-light ml-1 text-md">Crear competencias</small>
+    Gestión de asignación de competencia
 </h1>
 <br>
 @stop
@@ -47,9 +46,9 @@
                 <div class="card-header">
                     <div class="card-tools">
                         <div class="btn-group">
-                            <a href="{{ route('persona.create') }}" class="btn btn-sm btn-block btn-primary">
+                            <a href="{{ route('asignar.create') }}" class="btn btn-sm btn-block btn-primary">
                                 <i class="fa fa-plus"></i>
-                                Agregar persona
+                                Asignar competencia
                             </a>
                         </div>
                     </div>

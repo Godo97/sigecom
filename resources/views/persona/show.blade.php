@@ -25,21 +25,16 @@
 			<div class="card-body">
 				<div class="page-content">
 					<div>
-						<div class="profile-page">
-							<div class="wrapper">
-								<div class="page-header page-header-small" filter-color="green">
-									<div class="page-header-image" data-parallax="true" style="background-image: url('/img/background/1.jpg')"></div>
-									<div class="container">
-										<div class="content-center">
-											<div class="cc-profile-image">
-												<a href="#"><img src="/img/{{$persona->foto}}" alt="Image" /></a>
-											</div>
-											<div class="h2 title">{{ $persona->nombre }} {{ $persona->apellido }}</div>
-											<p class="category text-white">
-												Web Developer, Graphic Designer, Photographer
-											</p>
-										</div>
+						<div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+							<div class="col-md-12 px-0">
+								<div class="content-center">
+									<div class="cc-profile-image">
+										<a href="#"><img class="bd-placeholder-img rounded-circle" src="/img/{{$persona->foto}}" alt="Image" /></a>
 									</div>
+									<h2 class="display-4">{{ $persona->nombre }} {{ $persona->apellido }}</h2>
+									<p class="category text-white">
+										Web Developer, Graphic Designer, Photographer
+									</p>
 								</div>
 							</div>
 						</div>
@@ -686,10 +681,23 @@
 @stop
 
 @section('css')
-	<!--<link href="css/aos.css?ver=1.1.0" rel="stylesheet" />-->
-    <link href="/css/main.css?ver=1.1.0" rel="stylesheet" />
+<style>
+	.content-center {
+		text-align: center;
+		padding: 0 15px;
+		color: #FFFFFF;
+		width: 100%;
+		max-width: 880px;
+	}
+
+	.category {
+		text-align: center;
+	}
+</style>
+<!--<link href="css/aos.css?ver=1.1.0" rel="stylesheet" />-->
+<!--<link href="/css/main.css?ver=1.1.0" rel="stylesheet" />-->
 @stop
 
 @section('js')
-	
+
 @stop

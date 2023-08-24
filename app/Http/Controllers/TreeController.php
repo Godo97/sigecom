@@ -26,6 +26,7 @@ class TreeController extends Controller
 
         return $consulta;
     }
+
     public static function tree()
     {
         $rows = TreeController::consulta();
@@ -33,33 +34,33 @@ class TreeController extends Controller
         $last_compenvl2_id = null;
 
         foreach ($rows as $row) {
-            $compenvl1_id = $row['compenvl1_id'];
-            $compenvl2_id = $row['compenvl2_id'];
+            $compenvl1_id = $row->compenvl1_id;
+            $compenvl2_id = $row->compenvl2_id;
 
             if ($compenvl1_id !== $last_compenvl1_id) {
                 $folders_arr_compenvl1[] = array(
-                    $row['compenvl1_id'],
-                    $row['compenvl1_codigo'],
-                    $row['compenvl1_compenvl1']
+                    $row->compenvl1_id,
+                    $row->compenvl1_codigo,
+                    $row->compenvl1_compenvl1
                 );
                 $last_compenvl1_id = $compenvl1_id;
             }
 
             if ($compenvl2_id !== $last_compenvl2_id) {
                 $folders_arr_compenvl2[] = array(
-                    $row['compenvl2_id'],
-                    $row['compenvl1_id'],
-                    $row['compenvl2_codigo'],
-                    $row['compenvl2_compenvl2']
+                    $row->compenvl2_id,
+                    $row->compenvl1_id,
+                    $row->compenvl2_codigo,
+                    $row->compenvl2_compenvl2
                 );
                 $last_compenvl2_id = $compenvl2_id;
             }
 
             $folders_arr_compenvl3[] = array(
-                $row['compenvl3_id'],
-                $row['compenvl2_id'],
-                $row['compenvl3_codigo'],
-                $row['compenvl3_compenvl3']
+                $row->compenvl3_id,
+                $row->compenvl2_id,
+                $row->compenvl3_codigo,
+                $row->compenvl3_compenvl3
             );
         }
 
@@ -89,23 +90,29 @@ class TreeController extends Controller
                             $compenvl3_nombre = $compenvl3[3];
 
                             $nietos_del_hijo[] = array(
+                                "checked" => false,
                                 "id" => $compenvl3_id,
+                                "cod" => $compenvl3_codigo,
                                 "text" => $compenvl3_nombre,
-                                "hijo_id" => $compenvl2_id,
+                                "parent" => $compenvl2_id,
                                 "nivel" => 2,
-                                "icon" => getIconClass(2), // Asignar el icono de Font Awesome para padres
-                                // Agrega aquí otras propiedades necesarias para cada nieto
+                                "flagUrl" => TreeController::getIconClass(2),
+                                "children" => null,
+                                "value" => null
                             );
                         }
                     }
 
                     $hijos_del_padre[] = array(
+                        "checked" => false,
                         "id" => $compenvl2_id,
+                        "cod" => $compenvl2_codigo,
                         "text" => $compenvl2_nombre,
-                        "padre_id" => $compenvl1_id,
+                        "parent" => $compenvl1_id,
                         "nivel" => 1,
-                        "icon" => getIconClass(1), // Asignar el icono de Font Awesome para padres
+                        "flagUrl" => TreeController::getIconClass(1), // Asignar el icono de Font Awesome para padres
                         "children" => $nietos_del_hijo,
+                        "value" => null
 
                         // Agrega aquí otras propiedades necesarias para cada hijo
                     );
@@ -113,13 +120,28 @@ class TreeController extends Controller
             }
 
             $combined_array[] = array(
-                "id" => $padre_id,
-                "text" => $padre_nombre,
+                "checked" => false,
+                "id" => $compenvl1_id,
+                "cod" => $compenvl1_codigo,
+                "text" => $compenvl1_nombre,
                 "nivel" => 0,
-                "icon" => getIconClass(0), // Asignar el icono de Font Awesome para padres
+                "flagUrl" => TreeController::getIconClass(0), // Asignar el icono de Font Awesome para padres
                 "children" => $hijos_del_padre,
+                "value" => null
                 // Agrega aquí otras propiedades necesarias para cada padre
             );
+        }
+        return $combined_array;
+    }
+
+    public static function getIconClass($nivel)
+    {
+        if ($nivel === 0) {
+            return "fas fa-stop text-danger"; // Icono de Font Awesome para padres
+        } elseif ($nivel === 1) {
+            return "fas fa-th-large text-success"; // Icono de Font Awesome para hijos
+        } elseif ($nivel === 2) {
+            return "fas fa-th text-warning"; // Icono de Font Awesome para nietos
         }
     }
 }
