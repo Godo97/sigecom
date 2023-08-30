@@ -84,8 +84,8 @@ class Compenvl2Controller extends Controller
 
     public function destroy(Compenvl2 $compenvl2)
     {   
-        var_dump($compenvl2);
-        //$compenvl2->delete();
+        //var_dump($compenvl2);
+        $compenvl2->delete();
         return redirect(to: '/competencia')->with('destroy', 'Dato eliminado');
         //return redirect(to: '/competencia')->with('fireAlert', true);
     }

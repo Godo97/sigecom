@@ -244,7 +244,6 @@
 					@method('DELETE')
 					<button type="submit" class="btn btn-danger">Eliminar</button>
 				</form>
-
 			</div>
 		</div>
 	</div>

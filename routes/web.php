@@ -45,6 +45,12 @@ route::get('competencia/compenvl2/{id}/create', [Controllers\Compenvl2Controller
 route::get('competencia/compenvl3/{id}/create', [Controllers\Compenvl3Controller::class, 'create'])->name('compenvl3.create');
 
 Route::resource('compe/asignar', Controllers\AsignarCompeController::class);
+//Route::resource('usuario', Controllers\UsuarioController::class);
 
+Route::get('usuario', [Controllers\UsuarioController::class, 'index'])->name('usuario.index');
+Route::post('usuario/store', [Controllers\UsuarioController::class, 'store'])->name('usuario.store');
+Route::get('usuario/edit/{id}/', [Controllers\UsuarioController::class, 'edit']);
+Route::post('usuario/update', [Controllers\UsuarioController::class, 'update'])->name('usuario.update');
+Route::get('usuario/destroy/{id}/', [Controllers\UsuarioController::class, 'destroy']);
 
 Route::get('pruebas', [Controllers\PruebasController::class, 'index'])->name('pruebas');
