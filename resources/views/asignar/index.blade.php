@@ -11,61 +11,37 @@
 @stop
 
 @section('content')
-@php
-    $heads = [
-        'ID',
-        'Name',
-        ['label' => 'Phone', 'width' => 40],
-        ['label' => 'Actions', 'no-export' => true, 'width' => 5],
-    ];
-
-    $btnEdit = '<button class="btn btn-xs btn-default text-primary mx-1 shadow" title="Edit">
-        <i class="fa fa-lg fa-fw fa-pen"></i>
-    </button>';
-    $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
-        <i class="fa fa-lg fa-fw fa-trash"></i>
-    </button>';
-    $btnDetails = '<button class="btn btn-xs btn-default text-teal mx-1 shadow" title="Details">
-        <i class="fa fa-lg fa-fw fa-eye"></i>
-    </button>';
-
-    $config = [
-        'data' => [
-            [22, 'John Bender', '+02 (123) 123456789', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
-            [19, 'Sophia Clemens', '+99 (987) 987654321', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
-            [3, 'Peter Sousa', '+69 (555) 12367345243', '<nobr>'.$btnEdit.$btnDelete.$btnDetails.'</nobr>'],
-        ],
-        'order' => [[1, 'asc']],
-        'columns' => [null, null, null, ['orderable' => false]],
-    ];
-@endphp
 <div class="container-fluid">
     <div class="row">
-        <div class="col-12">
-            <div class="card">
+        <div class="col-md-12">
+            @includeif('partials.errors')
+            <div class="card card-default">
                 <div class="card-header">
                     <div class="card-tools">
                         <div class="btn-group">
-                            <a href="{{ route('asignar.create') }}" class="btn btn-sm btn-block btn-primary">
+                            <button type="button" name="create_record" id="create_record" class="btn btn-sm btn-success">
                                 <i class="fa fa-plus"></i>
-                                Asignar competencia
-                            </a>
+                                Agregar usuario
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <x-adminlte-datatable id="table1" :heads="$heads" head-theme="dark" striped hoverable bordered>
-                            @foreach($config['data'] as $row)
-                            <tr>
-                                @foreach($row as $cell)
-                                <td>{!! $cell !!}</td>
-                                @endforeach
-                            </tr>
-                            @endforeach
-                        </x-adminlte-datatable>
+                        <div class="col-12 table-responsive">
+                            <table class="table table-bordered user_datatable" id="user_table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Correo</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -83,7 +59,52 @@ var_dump($tree);
 @stop
 
 @section('js')
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+
+        //var language = require('/vendor/datatables-plugins/i18n/es-ES.js');
+
+        var table = $('.user_datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('usuario.index') }}",
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'email',
+                    name: 'email'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false
+                },
+            ],
+            language: {
+                "processing": "Procesando...",
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "No se encontraron resultados",
+                "emptyTable": "Ningún dato disponible en esta tabla",
+                "info": "Mostrando registros del _PAGE_ al _PAGES_ de un total de _MAX_ registros",
+                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "search": "Buscar:",
+                "infoThousands": ",",
+                "loadingRecords": "Cargando...",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Último",
+                    "next": "Siguiente",
+                    "previous": "Anterior",
+                }
+            },
+        });
+    });
+</script>
 @stop
