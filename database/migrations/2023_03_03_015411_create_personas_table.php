@@ -23,6 +23,11 @@ return new class extends Migration
             $table->string('apellido', 100);
             $table->string('sapellido', 100)->nullable();
             $table->string('foto', 100)->nullable();
+            $table->json('info')->nullable();
+            $table->json('educacion')->nullable();
+            $table->json('explaboral')->nullable();
+            $table->json('curso')->nullable();
+            $table->json('referencia')->nullable();
             $table->foreignId('genero_id')
                   ->constrained('generos')
                   ->onUpdate('cascade')

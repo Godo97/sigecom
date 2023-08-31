@@ -20,14 +20,8 @@ return new class extends Migration
                   ->constrained('personas')
                   ->onUpdate('cascade')
                   ->onDeleted('cascade');
-            $table->foreignId('compenvl3_id')
-                  ->constrained('compenvl3s')
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
-            $table->foreignId('calificacion_id')
-                  ->constrained('calificacions')
-                  ->onUpdate('cascade')
-                  ->onDelete('cascade');
+            $table->json('competencia')->nullable();
+            
             $table->timestamps();
         });
     }
