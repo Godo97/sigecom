@@ -29,7 +29,8 @@
 				<div class="card-body">
 					<div class="row">
 						@foreach($personas as $persona)
-						<?php //var_dump($persona->foto)?>
+						<?php //var_dump($persona->foto)
+						?>
 						<div class="col-sm-3">
 							<div class="card card-widget widget-user">
 								<a href="{{ route('persona.show', $persona) }}">
@@ -37,7 +38,7 @@
 
 										<h3 class="widget-user-username">{{ $persona->nombre }} {{ $persona->apellido }}</h3>
 
-										<h5 class="widget-user-desc">Founder &amp; CEO</h5>
+
 									</div>
 									<div class="widget-user-image">
 										<img class="img-circle elevation-2" src="img/{{$persona->foto}}" alt="User Avatar">
@@ -68,6 +69,7 @@
 							</div>
 						</div>
 						@endforeach
+						
 					</div>
 				</div>
 

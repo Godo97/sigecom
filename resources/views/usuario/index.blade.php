@@ -16,22 +16,6 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            @if ($message = Session::get('success'))
-			<div class="alert alert-success alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-				<strong>{{ $message }}</strong>
-
-			</div>
-			@endif
-			@if ($message = Session::get('destroy'))
-			<div class="alert alert-danger alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<strong>{{ $message }}</strong>
-
-			</div>
-			@endif
             @includeif('partials.errors')
             <div class="card card-default">
                 <div class="card-header">
@@ -130,8 +114,6 @@
 <script src="/vendor/datatables-plugins/i18n/es-ES.js"></script>
 <script type="text/javascript">
     $(function() {
-
-        //var language = require('/vendor/datatables-plugins/i18n/es-ES.js');
 
         var table = $('.user_datatable').DataTable({
             processing: true,
