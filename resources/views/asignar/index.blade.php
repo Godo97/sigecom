@@ -19,10 +19,16 @@
                 <div class="card-header">
                     <div class="card-tools">
                         <div class="btn-group">
+                            <a href="{{ route('asignar.create') }}" class="btn btn-sm btn-success">
+                                <i class="fa fa-plus"></i>
+                                Agregar usuario
+                            </a>
+                            <!--
                             <button type="button" name="create_record" id="create_record" class="btn btn-sm btn-success">
                                 <i class="fa fa-plus"></i>
                                 Agregar usuario
                             </button>
+                            -->
                         </div>
                     </div>
                 </div>
@@ -33,8 +39,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>Correo</th>
+                                        <th>Persona</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
@@ -47,10 +52,6 @@
         </div>
     </div>
 </div>
-<?php
-var_dump($tree);
-
-?>
 
 @stop
 
@@ -62,23 +63,17 @@ var_dump($tree);
 <script type="text/javascript">
     $(function() {
 
-        //var language = require('/vendor/datatables-plugins/i18n/es-ES.js');
-
         var table = $('.user_datatable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('usuario.index') }}",
+            ajax: "{{ route('asignar.index') }}",
             columns: [{
                     data: 'id',
                     name: 'id'
                 },
                 {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'email',
-                    name: 'email'
+                    data: 'persona_id',
+                    name: 'persona_id'
                 },
                 {
                     data: 'action',

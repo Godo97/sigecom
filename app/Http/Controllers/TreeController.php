@@ -64,6 +64,7 @@ class TreeController extends Controller
             );
         }
 
+
         $combined_array = array();
 
         foreach ($folders_arr_compenvl1 as $compenvl1) {
@@ -90,28 +91,25 @@ class TreeController extends Controller
                             $compenvl3_nombre = $compenvl3[3];
 
                             $nietos_del_hijo[] = array(
-                                "checked" => false,
                                 "id" => $compenvl3_id,
                                 "cod" => $compenvl3_codigo,
                                 "text" => $compenvl3_nombre,
                                 "parent" => $compenvl2_id,
                                 "nivel" => 2,
-                                "flagUrl" => TreeController::getIconClass(2),
-                                "children" => null,
+                                "checked" => false,
                                 "value" => null
                             );
                         }
                     }
 
                     $hijos_del_padre[] = array(
-                        "checked" => false,
                         "id" => $compenvl2_id,
                         "cod" => $compenvl2_codigo,
                         "text" => $compenvl2_nombre,
                         "parent" => $compenvl1_id,
                         "nivel" => 1,
-                        "flagUrl" => TreeController::getIconClass(1), // Asignar el icono de Font Awesome para padres
                         "children" => $nietos_del_hijo,
+                        "checked" => false,
                         "value" => null
 
                         // Agrega aquí otras propiedades necesarias para cada hijo
@@ -120,28 +118,16 @@ class TreeController extends Controller
             }
 
             $combined_array[] = array(
-                "checked" => false,
                 "id" => $compenvl1_id,
                 "cod" => $compenvl1_codigo,
                 "text" => $compenvl1_nombre,
                 "nivel" => 0,
-                "flagUrl" => TreeController::getIconClass(0), // Asignar el icono de Font Awesome para padres
                 "children" => $hijos_del_padre,
+                "checked" => false,
                 "value" => null
                 // Agrega aquí otras propiedades necesarias para cada padre
             );
         }
         return $combined_array;
-    }
-
-    public static function getIconClass($nivel)
-    {
-        if ($nivel === 0) {
-            return "fas fa-stop text-danger"; // Icono de Font Awesome para padres
-        } elseif ($nivel === 1) {
-            return "fas fa-th-large text-success"; // Icono de Font Awesome para hijos
-        } elseif ($nivel === 2) {
-            return "fas fa-th text-warning"; // Icono de Font Awesome para nietos
-        }
     }
 }

@@ -20,8 +20,8 @@ function obtener_edad_segun_fecha($fecha_nacimiento)
 	return $diferencia->format("%y");
 }
 
-var_dump($persona_info);
-var_dump($persona_info[0]->info->telefono);
+//var_dump($persona_info);
+//var_dump($persona_info[0]->info->telefono);
 ?>
 
 <div class="row">

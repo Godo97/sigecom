@@ -25,17 +25,16 @@
                 </div>
             </div>
             <div class="card-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="form-asigna-compe">
                     @csrf
                     <div class="form-group row">
                         <label for="person" class="col-sm-2 col-form-label">Persona</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <select class="select2 form-control" name="persona" id="persona" required>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
+                                <select class="select2 form-control" name="persona" id="persona" data-placeholder="Seleccione persona" required>
+                                    @foreach($personas as $persona)
+                                    <option value="{{ $persona->id }}">{{ $persona->usuario }} : {{ $persona->nombre }} {{ $persona->apellido }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -45,7 +44,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <div id="tree"></div>
-                                <input type="hidden" class="form-control" id="competencias" name="valores_estrategia">
+                                <input type="hidden" class="form-control" id="competencias" name="competencias">
                             </div>
                         </div>
                     </div>
@@ -68,12 +67,11 @@
 @stop
 
 @section('css')
-<link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+<link href="/gijgo/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 @stop
 
 @section('js')
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript"></script>
+<script src="/gijgo/js/gijgo.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
@@ -92,7 +90,7 @@
         });
 
         var data = JSON.stringify(tree.getAll());
-        //console.log(data);
+        console.log(data);
         $('#btnData').on('click', function() {
             alert("Handler for `click` called.");
             var checkedIds = tree.getCheckedNodes();
@@ -109,21 +107,13 @@
             $.ajax({
                 url: "{{ route('asignar.store') }}",
                 type: 'POST',
-                data: {
-                    persona: persona,
-                    competencia: JSON.stringify(datos)
-                },
-                success: function(data) {
-                    if ($.isEmptyObject(data.error)) {
-                        alert(data.success);
-                        location.reload();
-                    } else {
-                        printErrorMsg(data.error);
-                    }
+                data: $('#form-asigna-compe').serialize(),
+                success: function(response) {
+                    console.log(response);
                 },
                 error: function(xhr, status, error) {
-                    // Manejar los errores de la solicitud AJAX si es necesario
                     console.error(error);
+                    console.log(data);
                 }
             });
         });
