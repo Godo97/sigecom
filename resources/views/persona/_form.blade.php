@@ -2,7 +2,7 @@
     <label for="estatu" class="col-sm-2 col-form-label">Estatus</label>
     <div class="col-sm-8">
         <select class="form-control select" name="estatu" style="width: 100%;" placeholder="-- Seleccione --">
-            
+            <option selected disabled>-- Seleccione --</option>
             @foreach($estatus as $estatu)
             <option value="{{ $estatu->id }}" {{ (isset($estatu->id) || old('id'))}}> {{ $estatu->estatu }}</option>
             @endforeach
@@ -87,7 +87,7 @@
     <label for="genero" class="col-sm-2 col-form-label">Genero</label>
     <div class="col-sm-8">
         <select class="form-control select" name="genero" style="width: 100%;">
-            <option value="" selected>-- Seleccione --</option>
+            <option selected disabled>-- Seleccione --</option>
             @foreach($generos as $genero)
             <option value="{{ $genero->id }}" {{ (isset($genero->id) || old('id'))}}>{{ $genero->genero }}</option>
             @endforeach

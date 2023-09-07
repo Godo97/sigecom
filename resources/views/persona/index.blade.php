@@ -35,10 +35,7 @@
 							<div class="card card-widget widget-user">
 								<a href="{{ route('persona.show', $persona) }}">
 									<div class="widget-user-header bg-info">
-
 										<h3 class="widget-user-username">{{ $persona->nombre }} {{ $persona->apellido }}</h3>
-
-
 									</div>
 									<div class="widget-user-image">
 										<img class="img-circle elevation-2" src="img/{{$persona->foto}}" alt="User Avatar">
@@ -69,10 +66,8 @@
 							</div>
 						</div>
 						@endforeach
-						
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>

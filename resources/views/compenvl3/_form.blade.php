@@ -59,7 +59,6 @@
     <label for="descripcion" class="col-sm-2 form-label">Descripción</label>
     <div class="col-sm-8">
         <div class="input-group">
-            
             <textarea class="form-control" id="descripcion" name="descripcion">{{ $compenvl3->descripcion }}</textarea>
         </div>
     </div>

@@ -8,9 +8,9 @@ class TreeController extends Controller
 {
     public static function consulta()
     {
-        $consulta = DB::table('compenvl3s')
-            ->join('compenvl1s', 'compenvl3s.compenvl1_id', '=', 'compenvl1s.id')
-            ->join('compenvl2s', 'compenvl3s.compenvl2_id', '=', 'compenvl2s.id')
+        $consulta = DB::table('compenvl1s')
+            ->leftjoin('compenvl2s', 'compenvl1s.id', '=',  'compenvl2s.compenvl1_id')
+            ->leftjoin('compenvl3s', 'compenvl2s.id', '=', 'compenvl3s.compenvl2_id')
             ->select(
                 'compenvl1s.id as compenvl1_id',
                 'compenvl1s.codigo as compenvl1_codigo',
@@ -23,7 +23,6 @@ class TreeController extends Controller
                 'compenvl3s.compenvl3 as compenvl3_compenvl3'
             )
             ->get();
-
         return $consulta;
     }
 
@@ -64,7 +63,6 @@ class TreeController extends Controller
             );
         }
 
-
         $combined_array = array();
 
         foreach ($folders_arr_compenvl1 as $compenvl1) {
@@ -97,7 +95,7 @@ class TreeController extends Controller
                                 "parent" => $compenvl2_id,
                                 "nivel" => 2,
                                 "checked" => false,
-                                "value" => null
+                                "value" => 0
                             );
                         }
                     }
@@ -110,7 +108,7 @@ class TreeController extends Controller
                         "nivel" => 1,
                         "children" => $nietos_del_hijo,
                         "checked" => false,
-                        "value" => null
+                        "value" => 0
 
                         // Agrega aquí otras propiedades necesarias para cada hijo
                     );
@@ -124,7 +122,7 @@ class TreeController extends Controller
                 "nivel" => 0,
                 "children" => $hijos_del_padre,
                 "checked" => false,
-                "value" => null
+                "value" => 0
                 // Agrega aquí otras propiedades necesarias para cada padre
             );
         }

@@ -28,7 +28,7 @@
                 <form class="form-horizontal" id="form-asigna-compe">
                     @csrf
                     <div class="form-group row">
-                        <label for="person" class="col-sm-2 col-form-label">Persona</label>
+                        <label for="persona" class="col-sm-2 col-form-label">Persona</label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <select class="select2 form-control" name="persona" id="persona" data-placeholder="Seleccione persona" required>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="compe" class="col-sm-2 col-form-label">Competencia</label>
+                        <label for="competencia" class="col-sm-2 col-form-label">Competencia</label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <div id="tree"></div>
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <button id="btnSave" class="btn btn-default">Data </button>
+                        <button type="button" id="btnSave" class="btn btn-default">Data </button>
                     </div>
                 </form>
             </div>
@@ -82,7 +82,6 @@
             checkboxes: true,
             cascade: 'up'
         });
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-Token': $('input[name=_token]').attr('value')
@@ -90,20 +89,15 @@
         });
 
         var data = JSON.stringify(tree.getAll());
-        console.log(data);
-        $('#btnData').on('click', function() {
-            alert("Handler for `click` called.");
-            var checkedIds = tree.getCheckedNodes();
-            console.log(checkedIds);
-        });
+        //console.log(data);
+
         $('#btnSave').on('click', function() {
-
-            var persona = $('#persona').val();
             var datos = tree.getAll();
-
             const competenciasJSON = JSON.stringify(datos);
+            console.log('data', competenciasJSON);
+            var checkedIds = tree.getCheckedNodes();
+            console.log('Checked', checkedIds);
             $('#competencias').val(competenciasJSON);
-
             $.ajax({
                 url: "{{ route('asignar.store') }}",
                 type: 'POST',

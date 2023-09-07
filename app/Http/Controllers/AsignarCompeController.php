@@ -35,14 +35,19 @@ class AsignarCompeController extends Controller
     {
         $personas = Persona::get();
         $tree = TreeController::tree();
+        //dd($tree);
         return view('asignar.create', compact('tree', 'personas'));
     }
 
     public function store(Request $request)
-    {   
-        $datos = $request->json()->all();
+    {
+        $compersona = new Compersona;
+        $datos = $request->all();
         if ($request->ajax()) {
-            echo $datos;
+            $compersona->persona_id = $request->get('persona');
+            $compersona->competencia = $request->get('competencias', null);
+            $compersona->save();
+
         }
     }
 
