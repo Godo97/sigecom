@@ -43,6 +43,7 @@ class AsignarCompeController extends Controller
     {
         $compersona = new Compersona;
         $datos = $request->all();
+        dd($datos);
         if ($request->ajax()) {
             $compersona->persona_id = $request->get('persona');
             $compersona->competencia = $request->get('competencias', null);
