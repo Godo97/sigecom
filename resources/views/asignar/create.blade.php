@@ -45,6 +45,7 @@
                             <div class="input-group">
                                 <div id="tree"></div>
                                 <input type="hidden" class="form-control" id="competencias" name="competencias">
+                                <input type="hidden" id="checkedIds" class="form-control" name="checkedIds">
                             </div>
                         </div>
                     </div>
@@ -67,11 +68,11 @@
 @stop
 
 @section('css')
-<link href="/gijgo/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/gijgo/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 @stop
 
 @section('js')
-<script src="/gijgo/js/gijgo.min.js" type="text/javascript"></script>
+<script src="/plugins/gijgo/js/gijgo.min.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
@@ -98,6 +99,7 @@
             var checkedIds = tree.getCheckedNodes();
             console.log('Checked', checkedIds);
             $('#competencias').val(competenciasJSON);
+            $('#checkedIds').val(checkedIds);
             $.ajax({
                 url: "{{ route('asignar.store') }}",
                 type: 'POST',
