@@ -5,7 +5,7 @@
 @section('content_header')
     <h1></h1>
 @stop
-@section('plugins.Chartjs', true)
+@section('plugins.Chartjs', false)
 @section('content')
 
     {{-- <div class="container">
@@ -88,15 +88,44 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <p class="text-center">
-                                    Data
+                                    <strong>Data</strong>
                                 </p>
                                 <div class="chart">
-                                    <div class="chartjs-size-monitor">
-                                        <canvas id="salesChart"></canvas>
-                                    </div>
+                                    <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
                                 </div>
                             </div>
                             <div class="col-md-4">
+                                <p class="text-center">
+                                    <strong>Goal Completion</strong>
+                                </p>
+                                <div class="progress-group">
+                                    Add Products to Cart
+                                    <span class="float-right"><b>160</b>/200</span>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-primary" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-group">
+                                    Complete Purchase
+                                    <span class="float-right"><b>310</b>/400</span>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-danger" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-group">
+                                    <span class="progress-text">Visit Premium Page</span>
+                                    <span class="float-right"><b>480</b>/800</span>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-success" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-group">
+                                    Send Inquiries
+                                    <span class="float-right"><b>250</b>/500</span>
+                                    <div class="progress progress-sm">
+                                        <div class="progress-bar bg-warning" style="width: 50%"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -104,21 +133,24 @@
             </div>
         </div>
     </div>
+    {{-- @dd($meses); --}}
 @endsection
 
 @section('css')
-
+    {{-- <link rel="stylesheet" href="vendor/chart.js/Chart.min.css"> --}}
 @stop
 
 @section('js')
+    {{-- <script src="vendor/chart.js/Chart.min.js"></script> --}}
+    <script src="plugins/chartJS/3.0.1/chart.min.js"></script>
     <script>
         $(function() {
             'use strict'
-
+            var meses = @json($meses);
             var salesChartCanvas = $('#salesChart').get(0).getContext('2d')
             console.log(salesChartCanvas);
             const salesChartData = {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                labels: meses,
                 datasets: [{
                         label: 'Digital Goods',
                         backgroundColor: 'rgba(60,141,188,0.9)',
@@ -171,7 +203,6 @@
                 options: salesChartOptions
             })
             console.log(salesChart);
-
         })
     </script>
 @stop
