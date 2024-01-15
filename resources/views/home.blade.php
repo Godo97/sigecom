@@ -100,9 +100,9 @@
                                 </p>
                                 <div class="progress-group">
                                     Add Products to Cart
-                                    <span class="float-right"><b>160</b>/200</span>
+                                    <span class="float-right"><b>20</b>/200</span>
                                     <div class="progress progress-sm">
-                                        <div class="progress-bar bg-primary" style="width: 80%"></div>
+                                        <div class="progress-bar bg-primary" style="width: {{20}}%"></div>
                                     </div>
                                 </div>
                                 <div class="progress-group">
@@ -134,6 +134,7 @@
         </div>
     </div>
     {{-- @dd($meses); --}}
+    {{-- @dd($personArr); --}}
 @endsection
 
 @section('css')
@@ -147,12 +148,13 @@
         $(function() {
             'use strict'
             var meses = @json($meses);
+            var personArr = @json($personArr);
             var salesChartCanvas = $('#salesChart').get(0).getContext('2d')
             console.log(salesChartCanvas);
             const salesChartData = {
                 labels: meses,
                 datasets: [{
-                        label: 'Digital Goods',
+                        label: 'Personas',
                         backgroundColor: 'rgba(60,141,188,0.9)',
                         borderColor: 'rgba(60,141,188,0.8)',
                         pointRadius: false,
@@ -160,7 +162,7 @@
                         pointStrokeColor: 'rgba(60,141,188,1)',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data: [28, 48, 40, 19, 86, 27, 90]
+                        data: personArr
                     },
                     {
                         label: 'Electronics',
@@ -171,7 +173,7 @@
                         pointStrokeColor: '#c1c7d1',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: [65, 59, 80, 81, 56, 55, 40]
+                        data: [1, 8, 10, 20, 34, 0, 40]
                     }
                 ]
             }

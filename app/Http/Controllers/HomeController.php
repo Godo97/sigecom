@@ -27,8 +27,9 @@ class HomeController extends Controller
     {
         $personArr = HomeController::getPersonCantMonths();
         $meses = HomeController::getLastSixMonths();
-        dd($personArr);
-        return view('home', compact('meses'));
+        //dd($meses);
+        //dd($personArr);
+        return view('home', compact('meses', 'personArr'));
     }
 
     function getLastSixMonths() {
@@ -53,14 +54,15 @@ class HomeController extends Controller
             $usermcount[(int)$key] = count($value);
         }
 
-        for($i = 1; $i <= 12; $i++){
-            if(!empty($usermcount[$i])){
-                $userArr[$i] = $usermcount[$i];
+        for($i = 1; $i <= 6; $i++){
+            $j = date('m', strtotime("-$i month"));
+            if(!empty($usermcount[(int)$j])){
+                $userArr[(int)$j] = $usermcount[(int)$j];
             }else{
-                $userArr[$i] = 0;
+                $userArr[(int)$j] = 0;
             }
         }
-
+        $userArr = array_reverse($userArr);
         return $userArr;
     }
 }
